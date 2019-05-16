@@ -1,0 +1,48 @@
+{% set name = "flask-migrate" %}
+{% set version = "2.4.0" %}
+
+package:
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
+
+source:
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
+  sha256: a361578cb829681f860e4de5ed2c48886264512f0c16144e404c36ddc95ab49c
+
+build:
+  number: 0
+  script: "{{ PYTHON }} -m pip install . --no-deps --ignore-installed -vv "
+
+requirements:
+  host:
+    - alembic >=0.7
+    - flask >=0.9
+    - flask-sqlalchemy >=1.0
+    - pip
+    - python
+    - setuptools
+  run:
+    - alembic >=0.7
+    - flask >=0.9
+    - flask-sqlalchemy >=1.0
+    - python
+    - setuptools
+
+test:
+  imports:
+    - flask_migrate
+  requires:
+    - flask-script >=0.6
+
+about:
+  home: http://github.com/miguelgrinberg/flask-migrate/
+  license: MIT
+  license_family: MIT
+  license_file: 
+  summary: SQLAlchemy database migrations for Flask applications using Alembic
+  doc_url: 
+  dev_url: 
+
+extra:
+  recipe-maintainers:
+    - your-github-id-here
